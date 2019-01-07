@@ -5,20 +5,17 @@ matrix:
     - python: 2.7
   include:
     - python: 2.7
-      env: PYTHON=C:\\Python27\\python.exe
       before_install: choco install python2
     - python: 3.7
-      env: PYTHON=C:\\Python37\\python.exe
       before_install: choco install python
 env:
   - REPO=MrAnde7son/Hunting  
 install:
-  - py -V
-  - $PYTHON --version
-  - $PYTHON -m pip --version
-  #- $PYTHON -m ensurepip --upgrade
-  #- pip install -r requirements.txt
-  - $PYTHON -m pip install flake8 --no-warn-script-location  # pytest  # add other testing frameworks later
+  - py --version
+  - py -m pip --version
+  #- py -m ensurepip --upgrade
+  #- py -m pip install -r requirements.txt
+  - py -m pip install flake8 --no-warn-script-location  # pytest  # add other testing frameworks later
 before_script:
   - URL=https://github.com/${REPO}
   - echo ; echo -n "flake8 testing of ${URL} on " ; python -V
@@ -26,11 +23,11 @@ before_script:
   #- cd ~/${REPO}
 script:
   - echo stop the build if there are Python syntax errors or undefined names
-  - $PYTHON -m flake8 --version
+  - py -m flake8 --version
   - echo ; echo -n "flake8 testing of ${URL} on " ; python -V
-  - $PYTHON -m flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
+  - py -m flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
   - echo exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-  - $PYTHON -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+  - py -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
   #- true  # pytest --capture=sys
 notifications:
   on_success: change
