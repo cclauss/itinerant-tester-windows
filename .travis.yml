@@ -13,7 +13,6 @@ matrix:
 env:
   - REPO=MrAnde7son/Hunting  
 install:
-  - py3 -V
   - py -V
   - $PYTHON --version
   - $PYTHON -m pip --version
