@@ -11,13 +11,13 @@ matrix:
       env: PY=py
       before_install: choco install python
 env:
-  - REPO=MrAnde7son/Hunting  
+  - REPO=cclauss/itinerant-tester-windows
 install:
   - $PY --version
   - $PY -m pip --version
   #- $PY -m ensurepip --upgrade
   #- $PY -m pip install -r requirements.txt
-  - $PY -m pip install flake8 --no-warn-script-location  # pytest  # add other testing frameworks later
+  - $PY -m pip install --no-warn-script-location flake8  # pytest  # add other testing frameworks later
 before_script:
   - URL=https://github.com/${REPO}
   - echo ; echo -n "flake8 testing of ${URL} on " ; $PY --version
