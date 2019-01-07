@@ -1,7 +1,7 @@
 group: travis_latest
 os: windows
 # dist: xenial  # required for Python >= 3.7 (travis-ci/travis-ci#9069)
-language: python
+language: generic
 cache: pip
 python:
   #- 2.7
@@ -18,7 +18,12 @@ matrix:
 env:
   - REPO=MrAnde7son/Hunting
   
+before-install:
+  - choco install python
 install:
+  - pip -V
+  - pip3 -V
+  - pip2 -V
   #- pip install -r requirements.txt
   - pip install flake8  # pytest  # add other testing frameworks later
 before_script:
