@@ -12,9 +12,9 @@ matrix:
     - python: 2.7
   include:
     - python: 2.7
-      before-install: choco install python2
+      before_install: choco install python2
     - python: 3.7
-      before-install: choco install python
+      before_install: choco install python
 #    - python: nightly
 #    - python: pypy
 #    - python: pypy3
@@ -22,6 +22,9 @@ matrix:
 #  - REPO=MrAnde7son/Hunting
   
 install:
+  - python --version
+  - pip -V
+  - python -m ensurepip --upgrade
   - pip -V
   - pip3 -V
   - pip2 -V
