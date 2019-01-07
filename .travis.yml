@@ -1,25 +1,26 @@
-group: travis_latest
 os: windows
-# dist: xenial  # required for Python >= 3.7 (travis-ci/travis-ci#9069)
-# language: python
-cache: pip
-python:
+language: cpp  # python
+# cache: pip
+# python:
   #- 2.7
   #- 3.4
   #- 3.5
   #- 3.6
-  - 3.7
+  # - 3.7
 matrix:
   allow_failures:
     - python: 2.7
-    - python: nightly
-    - python: pypy
-    - python: pypy3
-env:
-  - REPO=MrAnde7son/Hunting
+  include:
+    - python: 2.7
+      before-install: choco install python2
+    - python: 3.7
+      before-install: choco install python
+#    - python: nightly
+#    - python: pypy
+#    - python: pypy3
+#env:
+#  - REPO=MrAnde7son/Hunting
   
-before-install:
-  - choco install python
 install:
   - pip -V
   - pip3 -V
