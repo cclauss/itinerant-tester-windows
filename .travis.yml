@@ -5,8 +5,8 @@ matrix:
     - python: 2.7
   include:
     - python: 2.7
-      env: PY=py27  # C:\\Python27\\python.exe
-      before_install: choco install python2
+      env: PY=python  # C:\\Python27\\python.exe
+      before_install: choco upgrade python2
     - python: 3.7
       env: PY=py
       before_install: choco install python
