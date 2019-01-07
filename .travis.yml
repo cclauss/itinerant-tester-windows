@@ -14,6 +14,7 @@ env:
   - REPO=cclauss/itinerant-tester-windows
 install:
   - $PY --version
+  - $PY -m pip install --upgrade pip
   - $PY -m pip --version
   #- $PY -m ensurepip --upgrade
   #- $PY -m pip install -r requirements.txt
