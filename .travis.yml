@@ -10,8 +10,7 @@ matrix:
   include:
     - python: 2.7
       env: PY=C:\\Python27\\python.exe
-      # before_install: choco install python2
-      before_install: choco install python --version 2.7.15  # Not 2.7.15
+      before_install: choco install python2
     - python: 3.5
       env: PY=py
       before_install: choco install python --version 3.5.4  # Not 3.5.6
