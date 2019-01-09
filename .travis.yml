@@ -1,5 +1,6 @@
-# https://docs.travis-ci.com/user/reference/windows
 # https://blog.travis-ci.com/2018-10-11-windows-early-release
+# https://docs.travis-ci.com/user/reference/windows
+# https://chocolatey.org/packages/python
 os: windows    # Windows Server, version 1803
 language: cpp  # 'python' is not yet supported
 matrix:
