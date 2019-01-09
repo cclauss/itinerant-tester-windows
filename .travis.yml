@@ -7,14 +7,16 @@ matrix:
     - python: 2.7  # It is legacy Python after all...
   include:
     - python: 2.7
-      env: PY=C:\\Python27\\python.exe
-      before_install: choco install python2
+      # env: PY=C:\\Python27\\python.exe
+      # before_install: choco install python2
+      # env: PY=py
+      # before_install: choco install python --version 2.7.11
     - python: 3.5
       env: PY=py
-      before_install: choco install python --version 3.5.6
+      before_install: choco install python --version 3.5.4  # Not 3.5.6
     - python: 3.6
       env: PY=py
-      before_install: choco install python --version 3.6.8
+      before_install: choco install python --version 3.6  # .8
     - python: 3.7
       env: PY=py
       before_install: choco install python
