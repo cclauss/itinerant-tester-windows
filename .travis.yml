@@ -1,3 +1,5 @@
+# https://docs.travis-ci.com/user/reference/windows
+# https://blog.travis-ci.com/2018-10-11-windows-early-release
 os: windows
 language: cpp  # 'python' is not yet supported
 matrix:
