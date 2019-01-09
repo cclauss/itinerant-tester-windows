@@ -15,8 +15,8 @@ env:
 install:
   - $PY --version
   - $PY -m pip install --upgrade pip
-  - $PY -m pip --version
   #- $PY -m ensurepip --upgrade
+  - $PY -m pip --version
   #- $PY -m pip install -r requirements.txt
   - $PY -m pip install --no-warn-script-location flake8  # pytest  # add other testing frameworks later
 before_script:
@@ -25,8 +25,8 @@ before_script:
   #- git clone --depth=50 ${URL} ~/${REPO}  # --branch=master
   #- cd ~/${REPO}
 script:
-  - echo stop the build if there are Python syntax errors or undefined names
   - $PY -m flake8 --version
+  - echo stop the build if there are Python syntax errors or undefined names
   - echo ; echo -n "flake8 testing of ${URL} on " ; $PY --version
   - $PY -m flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
   - echo exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
