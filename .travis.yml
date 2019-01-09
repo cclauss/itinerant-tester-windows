@@ -8,10 +8,9 @@ matrix:
     - python: 3.5  # f-strings are available on Python >= 3.6
   include:
     - python: 2.7
-      # env: PY=C:\\Python27\\python.exe
-      # before_install: choco install python2
-      env: PY=py
-      before_install: choco install python --version 2.7.11
+      env: PY=C:\\Python27\\python.exe
+      before_install: choco install python2
+      # before_install: choco install python --version 2.7.11  # Not 2.7.15
     - python: 3.5
       env: PY=py
       before_install: choco install python --version 3.5.4  # Not 3.5.6
