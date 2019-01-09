@@ -5,3 +5,5 @@ Create a [.travis.yml](.travis.yml) file for doing parallel Travis CI runs of th
 * https://blog.travis-ci.com/2018-10-11-windows-early-release 
 * https://docs.travis-ci.com/user/reference/windows
 * https://chocolatey.org/packages/python
+
+[chocolatey/chocolatey-coreteampackages#1183](https://github.com/chocolatey/chocolatey-coreteampackages/issues/1183)
