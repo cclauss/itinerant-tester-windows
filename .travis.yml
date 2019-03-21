@@ -10,8 +10,8 @@ matrix:
   include:
     - python: 2.7
       env: PY=C:\\Python27\\python.exe
-      before_install:
-        - choco install python2 dotnet3.5
+      before_install: choco install python2 dotnet3.5
+      after_failure:
         - ls C:\ProgramData\chocolatey\logs\
         - cat C:\ProgramData\chocolatey\logs\chocolatey.log
     - python: 3.5
