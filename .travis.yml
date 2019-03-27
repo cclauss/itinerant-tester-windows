@@ -49,6 +49,8 @@ install:
   #- pip install -r requirements.txt
   - pip install flake8  # pytest  # add other testing frameworks later
 script:
+  - TOXENV=${TOXENV:-"py$(echo $TRAVIS_PYTHON_VERSION | sed 's/[^0-9]//g')"}
+  - echo "TOXENV: $TOXENV"
   - flake8 --version
   - echo stop the build if there are Python syntax errors or undefined names
   - echo ; echo -n "flake8 testing on " ; python --version
