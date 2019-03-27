@@ -5,25 +5,25 @@ os: windows   # Windows Server, version 1803
 language: sh  # 'language: python' is not yet supported
 
 py27-steps: &py27-steps
-  env: PATH=$/c/Python27:/c/Python27/Scripts:$PATH
+  env: PATH=/c/Python27:/c/Python27/Scripts:$PATH
   before_install:
     - choco install python2
     - python -m pip install --upgrade pip
 
 py35-steps: &py35-steps
-  env: PATH=$/c/Python35:/c/Python35/Scripts:$PATH
+  env: PATH=/c/Python35:/c/Python35/Scripts:$PATH
   before_install:
     - choco install python  --version 3.5.4
     - python -m pip install --upgrade pip
 
 py36-steps: &py36-steps
-  env: PATH=$/c/Python36:/c/Python36/Scripts:$PATH
+  env: PATH=/c/Python36:/c/Python36/Scripts:$PATH
   before_install:
     - choco install python --version 3.6.8
     - python -m pip install --upgrade pip
 
 py37-steps: &py37-steps
-  env: PATH=$/c/Python37:/c/Python37/Scripts:$PATH
+  env: PATH=/c/Python37:/c/Python37/Scripts:$PATH
   before_install:
     - choco install python
     - python -m pip install --upgrade pip
