@@ -1,51 +1,63 @@
 # https://blog.travis-ci.com/2018-10-11-windows-early-release
 # https://docs.travis-ci.com/user/reference/windows
 # https://chocolatey.org/packages/python
-os: windows    # Windows Server, version 1803
-language: cpp  # 'python' is not yet supported
+os: windows   # Windows Server, version 1803
+language: sh  # 'python' is not yet supported
+
+py27-steps: &py27-steps
+  env: PATH=$/c/Python27:/c/Python27/Scripts:$PATH
+  before_install:
+    - choco install python2
+    - python -m pip install --upgrade pip
+
+py35-steps: &py35-steps
+  env: PATH=$/c/Python35:/c/Python35/Scripts:$PATH
+  before_install:
+    - choco install python  --version 3.5.4
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+
+py36-steps: &py36-steps
+  env: PATH=$/c/Python36:/c/Python36/Scripts:$PATH
+  before_install:
+    - choco install python --version 3.6.8
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+
+py37-steps: &py37-steps
+  env: PATH=$/c/Python37:/c/Python37/Scripts:$PATH
+  before_install:
+    - choco install python
+    - python -m pip install --upgrade pip
+    - pip install -r requirements.txt
+
 matrix:
   allow_failures:
     - python: 2.7  # It is legacy Python after all...
     - python: 3.5  # f-strings are available on Python >= 3.6
   include:
-    - python: 2.7
-      env: PY=C:\\Python27\\python.exe
-      before_install: choco install python2 vcredist2008 -i vcpython27
-      after_failure:
-        - ls C:\ProgramData\chocolatey\logs\
-        - cat C:\ProgramData\chocolatey\logs\chocolatey.log
-    - python: 3.5
-      env: PY=py
-      before_install: choco install python --version 3.5.4  # Not 3.5.6
-    - python: 3.6
-      env: PY=py
-      before_install: choco install python --version 3.6.8
-    - python: 3.7
-      env: PY=py
-      before_install: choco install python
-# env:
-  # - REPO=cclauss/itinerant-tester-windows
+    - name: "Python 2.7: Run tests"
+      python: 2.7
+      <<: *py27-steps
+    - name: "Python 3.5: Run tests"
+      python: 3.5
+      <<: *py35-steps
+    - name: "Python 3.6: Run tests"
+      python: 3.6
+      <<: *py36-steps
+    - name: "Python 3.7: Run tests"
+      python: 3.7
+      <<: *py37-steps
 install:
-  - $PY --version
-  - $PY -m pip install --upgrade pip
-  #- $PY -m ensurepip --upgrade
-  - $PY -m pip --version
-  #- $PY -m pip install -r requirements.txt
-  #- choco install flake8 --source python  # Even choco can't find pip :-(
-  - $PY -m pip install --no-warn-script-location flake8  # pytest  # add other testing frameworks later
-# before_script:
-  # - URL=https://github.com/${REPO}
-  # - echo ; echo -n "flake8 testing of ${URL} on " ; $PY --version
-  #- git clone --depth=50 ${URL} ~/${REPO}  # --branch=master
-  #- cd ~/${REPO}
+  #- pip install -r requirements.txt
+  - pip install flake8  # pytest  # add other testing frameworks later
 script:
-  - $PY -m flake8 --version
+  - flake8 --version
   - echo stop the build if there are Python syntax errors or undefined names
-  - echo ; echo -n "flake8 testing of ${URL} on " ; $PY --version
-  - $PY -m flake8 . --count --select=E901,E999,F821,F822,F823 --show-source --statistics
+  - echo ; echo -n "flake8 testing on " ; python --version
+  - flake8 . --count --select=E9,F401,F63,F72,F82 --show-source --statistics
   - echo exit-zero treats all errors as warnings.  The GitHub editor is 127 chars wide
-  - $PY -m flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
+  - flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
   #- true  # pytest --capture=sys
 notifications:
-  on_success: change
-  on_failure: change  # `always` will be the setting once code changes slow down
+  email: false
