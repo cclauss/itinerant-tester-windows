@@ -34,16 +34,12 @@ matrix:
     - python: 3.5  # f-strings are available on Python >= 3.6
   include:
     - name: "Python 2.7: Run tests"
-      python: 2.7
       <<: *py27-steps
     - name: "Python 3.5: Run tests"
-      python: 3.5
       <<: *py35-steps
     - name: "Python 3.6: Run tests"
-      python: 3.6
       <<: *py36-steps
     - name: "Python 3.7: Run tests"
-      python: 3.7
       <<: *py37-steps
 install:
   #- pip install -r requirements.txt
